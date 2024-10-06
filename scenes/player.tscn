@@ -1,7 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwj2d36ntno5"]
+[gd_scene load_steps=7 format=3 uid="uid://cwj2d36ntno5"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_ody6l"]
-[ext_resource type="Texture2D" uid="uid://ciop5ie6ek355" path="res://icon.svg" id="2_ojqkq"]
+[ext_resource type="Texture2D" uid="uid://dssnrkisphbad" path="res://assets/creature/player_body.png" id="2_3hmrr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp465"]
+atlas = ExtResource("2_3hmrr")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_th0wi"]
+atlas = ExtResource("2_3hmrr")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xmk2e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp465")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th0wi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dm8jx"]
 radius = 64.0
@@ -10,8 +32,20 @@ radius = 64.0
 motion_mode = 1
 script = ExtResource("1_ody6l")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ojqkq")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-25, -21)
+scale = Vector2(0.667969, 0.972656)
+sprite_frames = SubResource("SpriteFrames_xmk2e")
+autoplay = "default"
+frame_progress = 0.432331
+
+[node name="Line2D" type="Line2D" parent="AnimatedSprite2D"]
+position = Vector2(37.4269, 21.5904)
+scale = Vector2(1.49708, 1.02811)
+points = PackedVector2Array(51, -37, 128, -50)
+default_color = Color(0.858824, 0.501961, 0.027451, 1)
+end_cap_mode = 2
+antialiased = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dm8jx")
@@ -20,13 +54,14 @@ shape = SubResource("CircleShape2D_dm8jx")
 target_position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.3, 0.3)
 
 [node name="Clock" type="Label" parent="Camera2D"]
-offset_left = -1434.0
-offset_top = -810.0
-offset_right = -1179.0
-offset_bottom = -743.0
+offset_left = -2356.0
+offset_top = -1344.0
+offset_right = -2101.0
+offset_bottom = -1207.0
+scale = Vector2(2.94, 2.94)
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 text = "0:00
@@ -37,11 +72,12 @@ text = "0:00
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1129.0
-offset_top = -810.0
-offset_right = 1429.0
-offset_bottom = -743.0
+offset_left = 1487.0
+offset_top = -1349.0
+offset_right = 1787.0
+offset_bottom = -1282.0
 grow_horizontal = 0
+scale = Vector2(2.94, 2.94)
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 text = "SCORE: 0

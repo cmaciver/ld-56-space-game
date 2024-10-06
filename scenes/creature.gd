@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 
 @export var sprite : Texture 
@@ -22,9 +23,22 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	
 	#$Label.font_color = Color("00FF00")
 	$Label.scale = Vector2(5.0, 5.0)
-	$Label.text = "Thanks!" # TODO add more phrases
+	var val = randi_range(1, 4)
+	if val == 1:
+		$Label.text = "Thanks!"
+	if val == 2:
+		$Label.text = "Yippee!"
+	if val == 3:
+		$Label.text = "...thanks dude!"
+	if val == 4:
+		$Label.text = "Yahaha!"
 	
 	# TODO don't make it stay up forever
+	var noise = AudioStreamPlayer.new()
+	add_child(noise)
+	noise.stream = preload("res://assets/sound/present_collect.ogg")
+	noise.play()
+	noise.finished.connect(Callable(noise, "queue_free"))
 	
 	
 	

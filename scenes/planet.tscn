@@ -1,6 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtamtt7qjndf3"]
+[gd_scene load_steps=7 format=3 uid="uid://dtamtt7qjndf3"]
 
 [ext_resource type="Texture2D" uid="uid://cm5f82ibk2b3i" path="res://assets/circle.png" id="1_ipt4g"]
+[ext_resource type="Script" path="res://scenes/planet.gd" id="1_t6cnr"]
+[ext_resource type="Texture2D" uid="uid://l6xeja183qy5" path="res://assets/planet/red_planet.png" id="3_ux1tq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3pvx7"]
+resource_local_to_scene = true
+radius = 1000.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bydl5"]
 friction = 0.85
@@ -10,23 +16,8 @@ absorbent = true
 [sub_resource type="CircleShape2D" id="CircleShape2D_mpv7j"]
 radius = 100.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3pvx7"]
-resource_local_to_scene = true
-radius = 1000.0
-
 [node name="Node2D" type="Node2D"]
-
-[node name="PlanetBody" type="StaticBody2D" parent="."]
-physics_material_override = SubResource("PhysicsMaterial_bydl5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlanetBody"]
-shape = SubResource("CircleShape2D_mpv7j")
-
-[node name="Sprite2D" type="Sprite2D" parent="PlanetBody"]
-modulate = Color(1, 0, 1, 1)
-position = Vector2(2.86102e-06, -7.45058e-06)
-scale = Vector2(0.185185, 0.185185)
-texture = ExtResource("1_ipt4g")
+script = ExtResource("1_t6cnr")
 
 [node name="GravField" type="Area2D" parent="."]
 gravity_space_override = 1
@@ -38,6 +29,17 @@ gravity_direction = Vector2(0, 0)
 shape = SubResource("CircleShape2D_3pvx7")
 
 [node name="Sprite2D" type="Sprite2D" parent="GravField"]
-modulate = Color(1, 1, 0.227451, 0.372549)
+modulate = Color(1, 1, 1, 0.372549)
 scale = Vector2(1.844, 1.844)
 texture = ExtResource("1_ipt4g")
+
+[node name="PlanetBody" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_bydl5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlanetBody"]
+shape = SubResource("CircleShape2D_mpv7j")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlanetBody"]
+position = Vector2(2.86102e-06, -7.45058e-06)
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("3_ux1tq")

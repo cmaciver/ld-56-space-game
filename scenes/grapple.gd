@@ -5,6 +5,9 @@ var player_ref = null
 
 func set_player(p):
 	player_ref = p
+	
+func get_line():
+	return $Line2D
 
 func apply_custom_gravity(body: RigidBody2D):
 	# Get the direction from the body to the attractor

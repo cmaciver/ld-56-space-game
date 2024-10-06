@@ -13,6 +13,7 @@ var grapple = null
 @export var grapple_strength = 1.0
 @export var grapple_max = 5000.0
 
+## TODO MAKE THIS AN ARRAY
 var present = null
 @export var present_strength = 100.0
 @export var present_max = 6000.0
@@ -67,21 +68,36 @@ func handle_grapple_hook():
 			
 			grapple.global_position = $RayCast2D.get_collision_point()
 			print("grappled!")
+			
+			var hook_noise = AudioStreamPlayer.new()
+			add_child(hook_noise)
+			hook_noise.stream = preload("res://assets/sound/grapple hook.ogg")
+			hook_noise.play()
+			hook_noise.finished.connect(Callable(hook_noise, "queue_free"))
 		
 	if Input.is_action_just_released("left_click"): # end grapple
 		if hooked:
 			hooked = false
-			grapple.queue_free()
+			
+			if is_instance_valid(grapple):
+				grapple.queue_free()
 			print("release")
 
 # actually does grapple hook physics
 func react_grapple():
 	if not is_instance_valid(grapple):
+		$AnimatedSprite2D/Line2D.set_point_position(1, Vector2(128, -50))
 		return Vector2()
+		
+	
 		
 	# Get the direction from the body to the attractor
 	var direction = grapple.global_position - global_position
 	var distance = direction.length()
+	
+	# have your ass face the grapple point
+	$AnimatedSprite2D.rotation = direction.angle()
+	$AnimatedSprite2D/Line2D.set_point_position(1, direction.rotated(-direction.angle()))
 
 	# Normalize the direction vector
 	direction = direction.normalized()

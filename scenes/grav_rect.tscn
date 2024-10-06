@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cshl14uua27x3"]
 
-[ext_resource type="Texture2D" uid="uid://ciop5ie6ek355" path="res://icon.svg" id="1_2nku2"]
+[ext_resource type="Texture2D" uid="uid://dx0l7127drogl" path="res://assets/item/boost.png" id="1_s18ka"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_je32c"]
 size = Vector2(128, 128)
@@ -13,6 +13,19 @@ gravity_direction = Vector2(0, -1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_je32c")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="TextureRect" parent="."]
 modulate = Color(0.12549, 1, 1, 0.247059)
-texture = ExtResource("1_2nku2")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 336.0
+offset_bottom = 336.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("1_s18ka")
+stretch_mode = 1
