@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsr0okmr7rrmm"]
+
+[ext_resource type="Texture2D" uid="uid://cm5f82ibk2b3i" path="res://assets/circle.png" id="1_emsf2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wr46w"]
+bounce = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c0ya2"]
+radius = 100.0
+height = 294.0
+
+[node name="Asteroid" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_wr46w")
+can_sleep = false
+freeze_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_c0ya2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.375833, 0, 0.55, 1)
+scale = Vector2(0.191, 0.275)
+texture = ExtResource("1_emsf2")

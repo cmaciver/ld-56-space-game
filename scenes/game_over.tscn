@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg5wcb680v6jf"]
+
+[ext_resource type="Script" path="res://scenes/restart_game.gd" id="1_rat8i"]
+
+[node name="Game-over" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+offset_left = -721.0
+offset_top = -406.0
+offset_right = 717.0
+offset_bottom = 406.0
+color = Color(0.147741, 0.103045, 0.557808, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.5
+offset_top = -75.0
+offset_right = 137.5
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+
+[node name="Score" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Score: X
+"
+horizontal_alignment = 1
+
+[node name="restart_game" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Try Again?"
+script = ExtResource("1_rat8i")
+
+[connection signal="pressed" from="VBoxContainer/restart_game" to="VBoxContainer/restart_game" method="_on_button_up"]

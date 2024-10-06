@@ -1,0 +1,146 @@
+[gd_scene load_steps=11 format=3 uid="uid://neopd148syu4"]
+
+[ext_resource type="PackedScene" uid="uid://cwj2d36ntno5" path="res://scenes/player.tscn" id="1_a8h5u"]
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_flwio"]
+[ext_resource type="PackedScene" uid="uid://dtamtt7qjndf3" path="res://scenes/planet.tscn" id="2_15snn"]
+[ext_resource type="Texture2D" uid="uid://de00mituhb8u4" path="res://assets/stars-pink-FINAL-2.png" id="2_86mx4"]
+[ext_resource type="Texture2D" uid="uid://btgi7npadsl36" path="res://assets/stars large.png" id="2_hmcve"]
+[ext_resource type="PackedScene" uid="uid://cshl14uua27x3" path="res://scenes/grav_rect.tscn" id="3_560yd"]
+[ext_resource type="PackedScene" uid="uid://bsr0okmr7rrmm" path="res://scenes/asteroid.tscn" id="4_a6gu0"]
+[ext_resource type="Texture2D" uid="uid://ciop5ie6ek355" path="res://icon.svg" id="5_23tis"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cffv7"]
+resource_local_to_scene = true
+radius = 1000.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8wyk"]
+resource_local_to_scene = true
+radius = 1000.0
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_flwio")
+start_timer = 1000.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Void" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(5000, 5000)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/Void"]
+offset_right = 5000.0
+offset_bottom = 5000.0
+color = Color(0.0401994, 0.0369773, 0.187105, 1)
+
+[node name="red stars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.15, 0.15)
+motion_mirroring = Vector2(10000, 10000)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/red stars"]
+modulate = Color(1, 0.454902, 1, 0.396078)
+scale = Vector2(5, 5)
+texture = ExtResource("2_86mx4")
+
+[node name="white Stars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(2700, 2700)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/white Stars"]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_hmcve")
+centered = false
+
+[node name="THE BLUE STARS?!?!" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(3780, 3780)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/THE BLUE STARS?!?!"]
+modulate = Color(0, 1, 1, 1)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_hmcve")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("1_a8h5u")]
+z_index = 1
+position = Vector2(-3119, -508)
+SPEED = 3352.38
+MAX_SPEED = 5000.0
+falloff = 1.0
+
+[node name="Planet1" parent="." instance=ExtResource("2_15snn")]
+position = Vector2(-2025, -882)
+
+[node name="GravField" parent="Planet1" index="1"]
+scale = Vector2(2, 2)
+gravity = 2303.96
+
+[node name="CollisionShape2D" parent="Planet1/GravField" index="0"]
+shape = SubResource("CircleShape2D_cffv7")
+
+[node name="Planet2" parent="." instance=ExtResource("2_15snn")]
+position = Vector2(1796, 2546)
+scale = Vector2(0.3, 0.3)
+
+[node name="Planet3" parent="." instance=ExtResource("2_15snn")]
+position = Vector2(2396, 2971)
+scale = Vector2(0.3, 0.3)
+
+[node name="Planet4" parent="." instance=ExtResource("2_15snn")]
+position = Vector2(646, 1641)
+scale = Vector2(0.3, 0.3)
+
+[node name="PlanetBody" parent="Planet4" index="0"]
+scale = Vector2(4, 4)
+
+[node name="CollisionShape2D" parent="Planet4/GravField" index="0"]
+shape = SubResource("CircleShape2D_y8wyk")
+disabled = true
+
+[node name="grav_rect" parent="." instance=ExtResource("3_560yd")]
+position = Vector2(-3248, 1726)
+scale = Vector2(4.4661, 6.3441)
+gravity_point_center = Vector2(0, 5)
+gravity_direction = Vector2(0, 5)
+
+[node name="grav_rect2" parent="." instance=ExtResource("3_560yd")]
+position = Vector2(2364, 671)
+rotation = -2.30821
+scale = Vector2(11.4158, 6.97968)
+gravity_point_center = Vector2(-2, 2)
+gravity_direction = Vector2(-2, 2)
+
+[node name="Asteroid" parent="." instance=ExtResource("4_a6gu0")]
+position = Vector2(-2327, 586)
+linear_velocity = Vector2(1000, 0)
+angular_velocity = 0.575959
+
+[node name="Asteroid3" parent="." instance=ExtResource("4_a6gu0")]
+position = Vector2(-2469, 2944)
+angular_velocity = 0.575959
+
+[node name="Asteroid4" parent="." instance=ExtResource("4_a6gu0")]
+position = Vector2(-639, 3038)
+angular_velocity = 0.575959
+
+[node name="Asteroid5" parent="." instance=ExtResource("4_a6gu0")]
+position = Vector2(-1615, 3079)
+angular_velocity = 0.575959
+
+[node name="Asteroid6" parent="." instance=ExtResource("4_a6gu0")]
+position = Vector2(-1817, 1726)
+angular_velocity = 0.575959
+
+[node name="Asteroid7" parent="." instance=ExtResource("4_a6gu0")]
+position = Vector2(-2617, 1498)
+angular_velocity = 0.575959
+
+[node name="Asteroid2" parent="." instance=ExtResource("4_a6gu0")]
+position = Vector2(-1914, 2247)
+linear_velocity = Vector2(0.1, -0.4)
+angular_velocity = -0.174533
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("5_23tis")
+
+[editable path="Planet1"]
+[editable path="Planet4"]

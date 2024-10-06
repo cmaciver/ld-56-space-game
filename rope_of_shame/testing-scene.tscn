@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://r7xgtiqi14x8"]
+
+[ext_resource type="PackedScene" uid="uid://cwj2d36ntno5" path="res://scenes/player.tscn" id="1_a7vjx"]
+[ext_resource type="PackedScene" uid="uid://deysybtypl6vb" path="res://scenes/package.tscn" id="2_b0md6"]
+[ext_resource type="PackedScene" uid="uid://c5jobaj5njtom" path="res://rope_of_shame/rope_deprecated.tscn" id="2_ef5vg"]
+[ext_resource type="PackedScene" uid="uid://3fl1deivvt42" path="res://scenes/creature.tscn" id="2_ght76"]
+[ext_resource type="Texture2D" uid="uid://p88yva210fb4" path="res://assets/circle GUY.png" id="3_y0fa6"]
+
+[node name="Testing-scene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_a7vjx")]
+position = Vector2(2289, -525)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Player"]
+position = Vector2(2, 1)
+node_a = NodePath("..")
+node_b = NodePath("../../ropium/LastNode")
+
+[node name="ropium" parent="." instance=ExtResource("2_ef5vg")]
+position = Vector2(1995, -525)
+scale = Vector2(1.5, 1.5)
+
+[node name="RigidBody2D" parent="ropium" index="0"]
+mass = 1.0
+
+[node name="PinJoint2D" parent="ropium/RigidBody2D" index="0"]
+bias = 0.9
+
+[node name="RigidBody2D2" parent="ropium" index="1"]
+mass = 1.0
+
+[node name="PinJoint2D" parent="ropium/RigidBody2D2" index="0"]
+bias = 0.9
+
+[node name="RigidBody2D3" parent="ropium" index="2"]
+mass = 1.0
+
+[node name="PinJoint2D" parent="ropium/RigidBody2D3" index="0"]
+bias = 0.9
+
+[node name="RigidBody2D4" parent="ropium" index="3"]
+mass = 1.0
+
+[node name="PinJoint2D" parent="ropium/RigidBody2D4" index="0"]
+bias = 0.9
+
+[node name="RigidBody2D5" parent="ropium" index="4"]
+mass = 1.0
+
+[node name="PinJoint2D" parent="ropium/RigidBody2D5" index="0"]
+bias = 0.9
+
+[node name="RigidBody2D6" parent="ropium" index="5"]
+mass = 1.0
+
+[node name="PinJoint2D" parent="ropium/RigidBody2D6" index="0"]
+bias = 0.9
+
+[node name="RigidBody2D7" parent="ropium" index="6"]
+mass = 1.0
+
+[node name="PinJoint2D" parent="ropium/RigidBody2D7" index="0"]
+bias = 0.9
+
+[node name="RigidBody2D8" parent="ropium" index="7"]
+mass = 1.0
+
+[node name="PinJoint2D" parent="ropium/RigidBody2D8" index="0"]
+bias = 0.9
+
+[node name="RigidBody2D9" parent="ropium" index="8"]
+mass = 1.0
+
+[node name="PinJoint2D" parent="ropium/RigidBody2D9" index="0"]
+bias = 0.9
+
+[node name="LastNode" parent="ropium" index="9"]
+mass = 1.0
+
+[node name="BOX" parent="." instance=ExtResource("2_b0md6")]
+position = Vector2(1951, -522)
+mass = 20.0
+
+[node name="PinJoint2D" type="PinJoint2D" parent="BOX"]
+position = Vector2(28, -3)
+node_a = NodePath("../../ropium/RigidBody2D")
+node_b = NodePath("..")
+bias = 0.9
+
+[node name="scribble man" parent="." instance=ExtResource("2_ght76")]
+sprite = ExtResource("3_y0fa6")
+
+[editable path="ropium"]
