@@ -12,6 +12,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	$Player/Camera2D/Score.text = "SCORE: %d" % Global.score
+	
 	timer -= delta
 	
 	if gameplay and is_instance_valid($Player/Camera2D/Clock):
@@ -34,7 +36,4 @@ func convert_to_seconds(i):
 		
 	return "%d:%02d.%03d" % [minutes, seconds, decimal]
 
-# Increases the score by a given amount
-func add_score(amount: int) -> void:
-	Global.score += amount
-	$Player/Camera2D/Score.text = Global.score
+	

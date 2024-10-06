@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://neopd148syu4"]
+[gd_scene load_steps=13 format=3 uid="uid://neopd148syu4"]
 
 [ext_resource type="PackedScene" uid="uid://cwj2d36ntno5" path="res://scenes/player.tscn" id="1_a8h5u"]
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_flwio"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cshl14uua27x3" path="res://scenes/grav_rect.tscn" id="3_560yd"]
 [ext_resource type="PackedScene" uid="uid://bsr0okmr7rrmm" path="res://scenes/asteroid.tscn" id="4_a6gu0"]
 [ext_resource type="Texture2D" uid="uid://ciop5ie6ek355" path="res://icon.svg" id="5_23tis"]
+[ext_resource type="PackedScene" uid="uid://deysybtypl6vb" path="res://scenes/package.tscn" id="9_itu7e"]
+[ext_resource type="PackedScene" uid="uid://3fl1deivvt42" path="res://scenes/creature.tscn" id="10_wo7cl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cffv7"]
 resource_local_to_scene = true
@@ -19,7 +21,7 @@ radius = 1000.0
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_flwio")
-start_timer = 1000.0
+start_timer = 120.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -61,7 +63,7 @@ centered = false
 
 [node name="Player" parent="." instance=ExtResource("1_a8h5u")]
 z_index = 1
-position = Vector2(-3119, -508)
+position = Vector2(1919, -1469)
 SPEED = 3352.38
 MAX_SPEED = 5000.0
 falloff = 1.0
@@ -141,6 +143,12 @@ angular_velocity = -0.174533
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 texture = ExtResource("5_23tis")
+
+[node name="Package" parent="." instance=ExtResource("9_itu7e")]
+position = Vector2(2561, -1551)
+
+[node name="Creature" parent="." instance=ExtResource("10_wo7cl")]
+position = Vector2(1023, -1505)
 
 [editable path="Planet1"]
 [editable path="Planet4"]

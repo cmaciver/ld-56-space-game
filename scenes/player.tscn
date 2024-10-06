@@ -37,12 +37,22 @@ text = "0:00
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1180.0
+offset_left = 1129.0
 offset_top = -810.0
-offset_right = 1435.0
+offset_right = 1429.0
 offset_bottom = -743.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 text = "SCORE: 0
 "
+horizontal_alignment = 2
+
+[node name="PackagePickupCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PackagePickupCollider"]
+shape = SubResource("CircleShape2D_dm8jx")
+
+[connection signal="area_entered" from="PackagePickupCollider" to="." method="_on_package_pickup_collider_area_entered"]

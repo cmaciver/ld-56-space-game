@@ -13,6 +13,10 @@ var grapple = null
 @export var grapple_strength = 1.0
 @export var grapple_max = 5000.0
 
+var present = null
+@export var present_strength = 100.0
+@export var present_max = 6000.0
+
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		accel *= 0.8
@@ -43,6 +47,9 @@ func _physics_process(delta: float) -> void:
 	if collision_info:
 		velocity = velocity.bounce(collision_info.get_normal())
 		velocity *= 0.5
+		
+	# handle the present after everything else!!
+	handle_present(delta)
 
 # creates / destroys the grapple hook
 func handle_grapple_hook():
@@ -85,18 +92,29 @@ func react_grapple():
 	# Apply the custom gravity by setting the body's gravity scale in the right direction
 	return (direction * grapple_magnitude).limit_length(grapple_max)
 
+func handle_present(delta):
+	if !is_instance_valid(present):
+		return
+		
+	# Get the direction from the body to the attractor
+	var direction = global_position - present.global_position
+	var distance = direction.length()
+
+	# Normalize the direction vector
+	direction = direction.normalized()
+
+	# Calculate gravity force based on the distance (stronger the farther away)
+	var present_magnitude = present_strength * max(distance * distance, 1000)
+
+	# Apply the custom gravity by setting the body's gravity scale in the right direction
+	present.linear_velocity = (direction * present_magnitude).limit_length(present_max)
+	
 
 
-
-
-
-
-		# Get the input direction and handle the movement/deceleration.
-	## As good practice, you should replace UI actions with custom gameplay actions.
-	#var direction := Input.get_axis("ui_left", "ui_right")
-	#if direction:
-		#velocity.x = direction * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	#move_and_slide()
+func _on_package_pickup_collider_area_entered(area: Area2D) -> void:
+	print("IT WAS THE PRESENT")
+	present = area.get_parent()
+	present.collision_layer = 0b1000 # layer 5, not layer 1
+	
+	area.collision_layer = 0b100000 # layer 6 for area
+	#TODO remove the present from the grapple hook collision area at this point
