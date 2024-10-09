@@ -9,3 +9,5 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	#modulate = 0xffffffff 
+	#$Sprite2D.self_modulate = self_modulate

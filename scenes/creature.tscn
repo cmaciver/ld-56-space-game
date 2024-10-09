@@ -61,7 +61,7 @@ offset_bottom = 499.0
 color = Color(0.53, 1, 0.639667, 0.152941)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
+scale = Vector2(5, 5)
 texture = ExtResource("2_qf2nd")
 hframes = 2
 

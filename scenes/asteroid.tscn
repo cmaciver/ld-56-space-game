@@ -14,7 +14,7 @@ height = 294.0
 physics_material_override = SubResource("PhysicsMaterial_wr46w")
 can_sleep = false
 freeze_mode = 1
-angular_velocity = 0.532293
+angular_velocity = 0.898081
 script = ExtResource("1_r1j65")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -15,12 +15,14 @@ script = ExtResource("1_nvraj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_emgq5")
+debug_color = Color(0.7, 0.7, 0.7, 0.419608)
 
 [node name="PickupCollider" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupCollider"]
+scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_skkhu")
 debug_color = Color(1, 1, 1, 0.42)
 
