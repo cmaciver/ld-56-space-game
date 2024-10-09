@@ -1,3 +1,4 @@
+@tool
 extends RigidBody2D
 
 
@@ -10,4 +11,4 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	#modulate = 0xffffffff 
-	#$Sprite2D.self_modulate = self_modulate
+	$Sprite2D.self_modulate = self_modulate
