@@ -12,6 +12,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	# UPDATE GAME STATE
 	$Player/Camera2D/Score.text = "SCORE: %d" % Global.score
 	
 	timer -= delta
@@ -19,12 +20,28 @@ func _process(delta: float) -> void:
 	if gameplay and is_instance_valid($Player/Camera2D/Clock):
 		$Player/Camera2D/Clock.text = convert_to_seconds(timer)
 	
+	
+	# RESET BUTTON
+	if Input.is_action_just_pressed("reset"):
+		get_tree().change_scene_to_file("res://scenes/game.tscn")
+	
+	# TIMER RUN OUT
 	if timer < 0:
 		pass
 		# TODO you lose
 		gameplay = false
 		#var scene = preload("res://scenes/game_over.tscn")
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		
+	
+	# FULL PRESENT COLLECT
+	if Global.score == 17:
+		pass
+		#gameplay = false
+		## have separate logic to export time to the output 
+		#get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+
+
 
 func get_time():
 	return convert_to_seconds(timer)
